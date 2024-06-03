@@ -39,8 +39,8 @@ namespace API_FullTrack.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pedido = clienteRequest.toModel();
-                _dataContext.Cliente.Add(pedido);
+                var pedido = pedidoRequest.toModel();
+                _dataContext.Pedido.Add(pedido);
                 _dataContext.SaveChanges();
                 return pedido;
             }

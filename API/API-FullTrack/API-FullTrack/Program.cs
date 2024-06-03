@@ -11,7 +11,7 @@ namespace API_FullTrack
 
             // Add services to the container.
 
-            builder.Services.AddControllers():
+            builder.Services.AddControllers();
 
             builder.Services.AddDbContext<DataContext, DataContext>();
             builder.Services.AddScoped<DataContext>();

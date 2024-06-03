@@ -22,7 +22,7 @@ namespace API_FullTrack.Controllers
         [HttpGet]
         public ActionResult<List<Usuario>> Get()
         {
-            var usuarios = _dataContext.Cliente.ToList();
+            var usuarios = _dataContext.Usuario.ToList();
             return usuarios;
         }
 
