@@ -1,100 +1,81 @@
 ﻿using API_FullTrack.Context;
-using Microsoft.AspNetCore.Mvc;
-
-namespace API_FullTrack.Controllers
-{
-    public class UsuarioController
-    {
-    }
-}
-
-
-
-
-/////////////////////////////////////////
-
-
-
-
-
-using API_Navarro.Context;
-using API_Navarro.DTO;
-using API_Navarro.Model;
+using API_FullTrack.DTO;
+using API_FullTrack.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace API_Navarro.Controllers
+namespace API_FullTrack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
         private readonly DataContext _dataContext;
 
-        public ClienteController()
+        public UsuarioController()
         {
             _dataContext = new DataContext();
         }
 
-        // GET: api/<ClienteController>
+        // GET: api/<UsuarioController>
         [HttpGet]
-        public ActionResult<List<Cliente>> Get()
+        public ActionResult<List<Usuario>> Get()
         {
-            var clientes = _dataContext.Cliente.ToList();
-            return clientes;
+            var usuarios = _dataContext.Cliente.ToList();
+            return usuarios;
         }
 
-        // GET api/<ClienteController>/5
+        // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<ClienteController>
+        // POST api/<UsuarioController>
         [HttpPost]
-        public ActionResult<Cliente> Post([FromBody] ClienteRequest clienteRequest)
+        public ActionResult<Usuario> Post([FromBody] UsuarioRequest usuarioRequest)
         {
             if (ModelState.IsValid)
             {
-                var cliente = clienteRequest.toModel();
-                _dataContext.Cliente.Add(cliente);
+                var usuario = usuarioRequest.toModel();
+                _dataContext.Usuario.Add(usuario);
                 _dataContext.SaveChanges();
-                return cliente;
+                return usuario;
             }
             return BadRequest(ModelState);
         }
 
-        // PUT api/<ClienteController>/5
+        // PUT api/<UsuarioController>/5
         [HttpPut]
-        public ActionResult<Cliente> Put([FromBody] Cliente cliente)
+        public ActionResult<Usuario> Put([FromBody] Usuario usuario)
         {
-            var clienteENulo = _dataContext.Cliente.FirstOrDefault(cliente) == null;
-            if (clienteENulo)
-                ModelState.AddModelError("ClienteId", "Id do cliente não encontrado!");
+            var usuarioENulo = _dataContext.Usuario.FirstOrDefault(usuario) == null;
+            if (usuarioENulo)
+                ModelState.AddModelError("UsuarioId", "Id do Usuario não encontrado!");
 
             if (ModelState.IsValid)
             {
-                _dataContext.Cliente.Update(cliente);
+                _dataContext.Usuario.Update(usuario);
                 _dataContext.SaveChanges();
-                return cliente;
+                return usuario;
             }
             return BadRequest(ModelState);
 
         }
 
-        // DELETE api/ClienteController>/5
+        // DELETE api/UsuarioController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var cliente = _dataContext.Cliente.Find(id);
-            if (cliente == null)
-                ModelState.AddModelError("ClienteId", "Id do cliente não encontrado!");
+            var usuario = _dataContext.Usuario.Find(id);
+            if (usuario == null)
+                ModelState.AddModelError("UsuarioId", "Id do Usuario não encontrado!");
 
             if (ModelState.IsValid)
             {
-                _dataContext.Cliente.Remove(cliente);
+                _dataContext.Usuario.Remove(usuario);
                 _dataContext.SaveChanges();
                 return Ok();
             }
