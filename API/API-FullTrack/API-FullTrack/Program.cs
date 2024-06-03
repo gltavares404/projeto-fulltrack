@@ -1,4 +1,6 @@
 
+using API_FullTrack.Context;
+
 namespace API_FullTrack
 {
     public class Program
@@ -8,6 +10,11 @@ namespace API_FullTrack
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddControllers():
+
+            builder.Services.AddDbContext<DataContext, DataContext>();
+            builder.Services.AddScoped<DataContext>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
