@@ -1,22 +1,6 @@
-<script setup>
-import {onMounted, reactive, ref} from 'vue';
-import Tabela from '../components/Tabela.vue';
 
-let tab = reactive(ref())
-
-onMounted(()=> {
-  fetch("")
-  .then(response => response.json())
-  .then(response => {
-    tab.value = response.results
-    console.log(tab)
-  });
-})
-
-</script>
 
 <template>
-  <main style="background-color: rgba(15,15,15);">  
   <nav class="navbar navbar-expand-lg bg-body-" style="justify-content: center; align-items: center; background-color: rgba(37,37,37); border: rgba(37,37,37); color: white">
   <div class="container-fluid" style="justify-content: center; align-items: center; background-color: rgba(37,37,37)">
     <img src="/logo.png" style="width: 90px; margin: 16px;">
@@ -122,12 +106,17 @@ onMounted(()=> {
         <th scope="col">Horário</th>
         <th scope="col">Data</th>
         <th scope="col">Ação</th>
-
-
       </tr>
     </thead>
     <tbody >
-      <tr style="background-color: rgba(15,15,15);">
+      <tr v-for="(pedido, index) in pedidos" :key="index" >
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.titulo }}</td>
+        <td>{{ pedido.endereco }}</td>
+        <td>{{ pedido.horario }}</td>
+        <td>{{ pedido.data }}</td>
+      </tr>
+      <!-- <tr style="background-color: rgba(15,15,15);">
         <th scope="row">1</th>
         <td>Mesa de madeira</td>
         <td>Rua Cachorro Feliz, 450</td>
@@ -161,17 +150,20 @@ onMounted(()=> {
         <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: none; border-radius: 8px; width: 160px; background-color: rgba(15,15,15); color:white; font-weight: 500; height: 32px;">Confirmar Entrega</button></td>
 
 
-      </tr>
+      </tr> -->
+
+
+
       <!-- COMPONENTE CONECTADO A API -->
-      <!-- <Tabela
-      v-for="item in tab"
-            :key="item.id"
-            :titulo="item.titulo"
-            :endereco="item.endereco"
-            :horario="item.horario"
-            :data="item.data"
-      ></Tabela> -->
-      <tr>
+
+      
+
+
+
+
+
+
+      <!-- <tr>
         <th scope="row">3</th>
         <td>Espelho Grande</td>
         <td>Rodovia Presidente Prudente, 50</td>
@@ -213,13 +205,12 @@ onMounted(()=> {
         <td>Rua Presidente Prudente, 50</td>
         <td>13h40</td>
         <td>14/12/2024</td>
-        <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: none; border-radius: 8px; width: 160px; background-color: rgba(15,15,15); color:white; font-weight: 500; height: 32px;">Confirmar Entrega</button></td>
+        <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: none; border-radius: 8px; width: 160px; background-color: rgba(15,15,15); color:white; font-weight: 500; height: 32px;">Confirmar Entrega</button></td> -->
 
-      </tr>
+      <!-- </tr> -->
     </tbody>
   </table>
 </div>
-  </main>
 </template>
 
 <style>
@@ -232,3 +223,48 @@ onMounted(()=> {
   }
 
 </style>
+
+<script>
+// import {onMounted, reactive, ref} from 'vue';
+// import Tabela from '../components/Tabela.vue';
+
+// let tab = reactive(ref())
+
+// onMounted(()=> {
+//   fetch("")
+//   .then(response => response.json())
+//   .then(response => {
+//     tab.value = response.results
+//     console.log(tab)
+//   });
+// })
+
+
+import PedidoDataService from "../services/PedidoDataService";
+
+
+export default {
+  name: "list-pedidos",
+  data() {
+    return{
+      pedidos: []
+    };
+  },
+  methods: {
+    retrivePedido() {
+      PedidoDataService.getAll()
+      .then(response => {
+        this.pedidos = response.data;
+        console.log(this.pedidos);
+      })
+      .catch(e => {
+        console.log(e)
+      });
+    }
+  },
+  mounted() {
+    this.retrivePedido();
+  },
+}
+
+</script>
