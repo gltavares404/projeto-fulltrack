@@ -4,24 +4,17 @@ import router from '@/router';
       <link rel="stylesheet" type="text/css" href="/src/style.css" media="screen" />
     <ul class="background">
         <div class="img-forms">
-            <img src="/logo.png" style="width: 220px; height: 140px;">
             <form style="align-items: center; justify-content: center; padding: 48px;">
                 <div class="mb-3" style="width: 400px;">
-                    <h1 style="padding-bottom: 0px; font-weight: 700; color: white;">Bem-vindo!</h1>
+                    <h1 style="padding-bottom: 0px; font-weight: 700; color: white;">Cadastre-se!</h1>
                     <label for="exampleInputEmail1" class="form-label" style="color: white">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="background-color: white;">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label" style="color: white">Senha</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" style="background-color: ehite; ">
-                    <div id="emailHelp" class="form-text" style="color: lightgray; font-size: 10px; font-style: italic;">Insira uma senha que contenha pelo menos uma letra maiúscula, uma letra minúscula, um caractere especial e um número.</div>
+                    <input type="password" class="form-control" id="exampleInputPassword1" style="background-color: white; ">
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" style="color: rgb(240, 36, 36);">
-        
-                    <label class="form-check-label" for="exampleCheck1" style="color: white">Lembre-se de mim</label>
-                </div>
-                <router-link class="btn btn-primary" style="background-color:rgb(240, 36, 36); border: none; font-weight: 600; width: 100%;" to="/home">Entrar</router-link>
+                <router-link class="btn btn-primary" style="background-color:rgb(240, 36, 36); border: none; font-weight: 600; width: 100%;" to="/">Entrar</router-link>
 
                 <router-link class="btn" style="background-color:none; border: none; font-weight: 400; margin-top: 12px;    width: 100%; text-align: center; justify-content: center; align-items: center; text-decoration: none; color: white;" to="/cad">Ainda não possue uma conta? <a style="color: rgb(240, 36, 36); font-weight: 800;">Cadastre-se</a></router-link>
 
